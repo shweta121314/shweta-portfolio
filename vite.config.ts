@@ -4,6 +4,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
+  base: "/", // ✅ ADD THIS LINE (VERY IMPORTANT)
+
   server: {
     host: "::",
     port: 3000,
@@ -11,7 +13,9 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
+
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
