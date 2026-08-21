@@ -96,33 +96,33 @@ const Hero = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container-custom relative z-10 pt-20"
+        className="container-custom relative z-10 pt-16 md:pt-20"
       >
         <motion.p
           variants={itemVariants}
-          className="text-primary mono-text text-sm md:text-base mb-4"
+          className="text-primary mono-text text-xs md:text-base mb-3 md:mb-4"
         >
           Hi, my name is
         </motion.p>
 
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-2"
+          className="text-3xl md:text-6xl lg:text-7xl font-bold text-foreground mb-1 md:mb-2"
         >
           {PERSONAL_INFO.name}.
         </motion.h1>
 
         <motion.h2
           variants={itemVariants}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold text-muted-foreground mb-6"
+          className="text-2xl md:text-5xl lg:text-6xl font-bold text-muted-foreground mb-4 md:mb-6"
         >
           {typedText}
-          <span className="inline-block w-[3px] h-[0.8em] bg-primary ml-1 animate-blink align-middle" />
+          <span className="inline-block w-[2px] md:w-[3px] h-[0.8em] bg-primary ml-1 animate-blink align-middle" />
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
-          className="text-muted-foreground text-base md:text-lg max-w-xl mb-10 leading-relaxed"
+          className="text-muted-foreground text-sm md:text-lg max-w-xl mb-6 md:mb-10 leading-relaxed"
         >
           I'm a{" "}
           <span className="text-primary font-medium">{PERSONAL_INFO.role}</span>{" "}
@@ -134,13 +134,13 @@ const Hero = () => {
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap gap-4 mb-12"
+          className="flex flex-wrap gap-3 mb-8 md:mb-12"
         >
           <motion.a
             href="#projects"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 bg-primary text-primary-foreground rounded-md font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors glow-effect"
+            className="px-4 md:px-6 py-2.5 md:py-3 bg-primary text-primary-foreground rounded-md font-medium flex items-center gap-2 hover:bg-primary/90 transition-colors glow-effect text-sm md:text-base"
           >
             View Projects
             <FiArrowDown className="animate-bounce" />
@@ -152,10 +152,10 @@ const Hero = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-3 border border-primary text-primary rounded-md font-medium flex items-center gap-2 hover:bg-primary/10 transition-colors"
+            className="px-4 md:px-6 py-2.5 md:py-3 border border-primary text-primary rounded-md font-medium flex items-center gap-2 hover:bg-primary/10 transition-colors text-sm md:text-base"
           >
             <FiDownload />
-            Download Resume
+            Resume
           </motion.a>
         </motion.div>
 

@@ -101,16 +101,16 @@ const Skills = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: easeOut }}
-          className="flex items-center gap-4 mb-12"
+          className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
         >
           <span className="text-primary mono-text">02.</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground">
             Skills & Technologies
           </h2>
           <div className="flex-1 h-px bg-border max-w-xs" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -122,7 +122,7 @@ const Skills = () => {
                 y: -8,
                 boxShadow: "0 0 30px hsl(187 80% 48% / 0.15), 0 8px 32px hsl(222 47% 4% / 0.5)",
               }}
-              className="glass-card p-6 rounded-xl transition-colors duration-300 hover:border-primary/40 relative group overflow-hidden"
+              className="glass-card p-4 md:p-6 rounded-xl transition-colors duration-300 hover:border-primary/40 relative group overflow-hidden"
             >
               {/* Hover glow overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

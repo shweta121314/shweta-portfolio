@@ -38,18 +38,18 @@ const Experience = () => {
         animate={isInView ? "visible" : "hidden"}
         className="container-custom"
       >
-        <motion.div variants={itemVariants} className="flex items-center gap-4 mb-12">
+        <motion.div variants={itemVariants} className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12">
           <span className="text-primary mono-text">04.</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground">
             Experience & Education
           </h2>
           <div className="flex-1 h-px bg-border max-w-xs" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* Work Experience */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-lg font-semibold text-foreground mb-8 flex items-center gap-2">
+            <h3 className="text-base md:text-lg font-semibold text-foreground mb-5 md:mb-8 flex items-center gap-2">
               <FiBriefcase className="text-primary" />
               Work Experience
             </h3>
@@ -106,7 +106,7 @@ const Experience = () => {
 
           {/* Education */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-lg font-semibold text-foreground mb-8 flex items-center gap-2">
+            <h3 className="text-base md:text-lg font-semibold text-foreground mb-5 md:mb-8 flex items-center gap-2">
               <FiBook className="text-primary" />
               Education
             </h3>

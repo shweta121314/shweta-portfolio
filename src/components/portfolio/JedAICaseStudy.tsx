@@ -49,9 +49,9 @@ const JedAICaseStudy = () => {
         className="container-custom relative z-10"
       >
         {/* Header */}
-        <motion.div variants={itemVariants} className="flex items-center gap-4 mb-6">
+        <motion.div variants={itemVariants} className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
           <span className="text-primary mono-text">05.</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground">
             Case Study
           </h2>
           <div className="flex-1 h-px bg-border max-w-xs" />
@@ -60,7 +60,7 @@ const JedAICaseStudy = () => {
         {/* Title Card */}
         <motion.div
           variants={itemVariants}
-          className="glass-card rounded-2xl p-8 md:p-10 mb-10 relative overflow-hidden group"
+          className="glass-card rounded-xl md:rounded-2xl p-5 md:p-10 mb-6 md:mb-10 relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 via-fuchsia-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           <div className="relative z-10">
@@ -73,13 +73,13 @@ const JedAICaseStudy = () => {
                 🧠
               </motion.span>
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                <h3 className="text-lg md:text-3xl font-bold text-foreground">
                   {JEDAI.title}
                 </h3>
-                <p className="text-primary mono-text text-sm">{JEDAI.subtitle}</p>
+                <p className="text-primary mono-text text-xs md:text-sm">{JEDAI.subtitle}</p>
               </div>
             </div>
-            <p className="text-muted-foreground leading-relaxed mt-4 max-w-3xl">
+            <p className="text-muted-foreground leading-relaxed mt-3 md:mt-4 max-w-3xl text-sm md:text-base">
               {JEDAI.description}
             </p>
             <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/30 rounded-full">
@@ -90,12 +90,12 @@ const JedAICaseStudy = () => {
         </motion.div>
 
         {/* Architecture */}
-        <motion.div variants={itemVariants} className="mb-10">
-          <h4 className="text-lg font-semibold text-foreground mb-5 flex items-center gap-2">
+        <motion.div variants={itemVariants} className="mb-6 md:mb-10">
+          <h4 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-5 flex items-center gap-2">
             <FiServer className="text-primary" />
             Microservices Architecture
           </h4>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {JEDAI.architecture.map((service, i) => (
               <motion.div
                 key={service.service}
@@ -120,12 +120,12 @@ const JedAICaseStudy = () => {
         </motion.div>
 
         {/* Tech Stack Layers */}
-        <motion.div variants={itemVariants} className="mb-10">
-          <h4 className="text-lg font-semibold text-foreground mb-5 flex items-center gap-2">
+        <motion.div variants={itemVariants} className="mb-6 md:mb-10">
+          <h4 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-5 flex items-center gap-2">
             <FiLayers className="text-primary" />
             Tech Stack
           </h4>
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             {JEDAI.techLayers.map((layer, i) => {
               const Icon = layerIcons[layer.layer] || FiCpu;
               return (
@@ -159,12 +159,12 @@ const JedAICaseStudy = () => {
         </motion.div>
 
         {/* Key Features */}
-        <motion.div variants={itemVariants} className="mb-10">
-          <h4 className="text-lg font-semibold text-foreground mb-5 flex items-center gap-2">
+        <motion.div variants={itemVariants} className="mb-6 md:mb-10">
+          <h4 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-5 flex items-center gap-2">
             <FiActivity className="text-primary" />
             Key Features
           </h4>
-          <div className="grid md:grid-cols-2 gap-3">
+          <div className="grid md:grid-cols-2 gap-2 md:gap-3">
             {JEDAI.keyFeatures.map((feature, i) => (
               <motion.div
                 key={i}
@@ -185,11 +185,11 @@ const JedAICaseStudy = () => {
 
         {/* ML Models */}
         <motion.div variants={itemVariants}>
-          <h4 className="text-lg font-semibold text-foreground mb-5 flex items-center gap-2">
+          <h4 className="text-base md:text-lg font-semibold text-foreground mb-4 md:mb-5 flex items-center gap-2">
             <FiCpu className="text-primary" />
             ML Models Trained & Deployed
           </h4>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {JEDAI.mlModels.map((model, i) => (
               <motion.div
                 key={model.model}

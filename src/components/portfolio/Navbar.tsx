@@ -105,43 +105,41 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-card mt-2 mx-4 rounded-lg overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden glass-card mt-1 mx-3 rounded-lg overflow-hidden"
           >
-            <ul className="flex flex-col p-4 gap-4">
+            <ul className="flex flex-col p-3 gap-2">
               {NAV_LINKS.map((link, index) => (
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium w-full text-left"
+                    className="text-muted-foreground hover:text-primary hover:bg-primary/5 transition-colors duration-200 text-xs font-medium w-full text-left py-1.5 px-2 rounded"
                   >
-                    <span className="text-primary mono-text text-xs mr-2">
+                    <span className="text-primary mono-text text-xs mr-1.5">
                       0{index + 1}.
                     </span>
                     {link.name}
                   </button>
                 </li>
               ))}
-              <li>
+              <li className="flex items-center gap-3 pt-1 border-t border-border mt-1">
                 <a
                   href={PERSONAL_INFO.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary/10 transition-colors duration-300 text-sm font-medium"
+                  className="inline-block px-3 py-1.5 border border-primary text-primary rounded text-xs font-medium hover:bg-primary/10 transition-colors"
                 >
                   Resume
                 </a>
-              </li>
-              <li>
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+                  className="p-1.5 rounded text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
                   aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
                 >
-                  {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
-                  {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                  {theme === "dark" ? <FiSun size={14} /> : <FiMoon size={14} />}
                 </button>
               </li>
             </ul>

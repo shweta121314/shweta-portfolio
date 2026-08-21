@@ -85,16 +85,16 @@ const About = () => {
         animate={isInView ? "visible" : "hidden"}
         className="container-custom"
       >
-        <motion.div variants={itemVariants} className="flex items-center gap-4 mb-12">
+        <motion.div variants={itemVariants} className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12">
           <span className="text-primary mono-text">01.</span>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+          <h2 className="text-xl md:text-3xl font-bold text-foreground">
             About Me
           </h2>
           <div className="flex-1 h-px bg-border max-w-xs" />
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12">
-          <motion.div variants={itemVariants} className="md:col-span-2 space-y-6">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+          <motion.div variants={itemVariants} className="md:col-span-2 space-y-4 md:space-y-6 order-2 md:order-1">
             {ABOUT_ME.paragraphs.map((paragraph, index) => (
               <motion.p
                 key={index}
@@ -136,11 +136,11 @@ const About = () => {
             initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
             animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.8, rotateY: 15 }}
             transition={{ duration: 0.8, delay: 0.4, ease: easeOut }}
-            className="relative group flex items-center justify-center"
+            className="relative group flex items-center justify-center order-1 md:order-2"
           >
             <div className="relative">
               <motion.div
-                className="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-primary/30 shadow-[0_0_30px_hsl(187_80%_48%/0.15)]"
+                className="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-primary/30 shadow-[0_0_30px_hsl(187_80%_48%/0.15)]"
               >
                 <img
                   src={PERSONAL_INFO.profileImage}
