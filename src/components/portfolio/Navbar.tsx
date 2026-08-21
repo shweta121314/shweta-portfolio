@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { NAV_LINKS, PERSONAL_INFO } from "@/config/constants";
+import { useTheme } from "@/hooks/use-theme";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,6 +77,19 @@ const Navbar = () => {
               Resume
             </a>
           </motion.li>
+          <motion.li
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors duration-300"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            >
+              {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
+            </button>
+          </motion.li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -117,6 +133,16 @@ const Navbar = () => {
                 >
                   Resume
                 </a>
+              </li>
+              <li>
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 text-sm font-medium"
+                  aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+                >
+                  {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
+                  {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                </button>
               </li>
             </ul>
           </motion.div>

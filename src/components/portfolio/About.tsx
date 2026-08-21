@@ -1,8 +1,37 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { ABOUT_ME, PERSONAL_INFO } from "@/config/constants";
 import type { Easing } from "framer-motion";
+
+interface AnimatedCounterProps {
+  target: number;
+  suffix?: string;
+  isInView: boolean;
+}
+
+const AnimatedCounter = ({ target, suffix = "", isInView }: AnimatedCounterProps) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const motionValue = useMotionValue(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(motionValue, target, {
+        duration: 2,
+        ease: "easeOut",
+        onUpdate: (latest) => {
+          setDisplayValue(Math.round(latest));
+        },
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, target, motionValue]);
+
+  return (
+    <span className="text-3xl font-bold text-gradient">
+      {displayValue}{suffix}
+    </span>
+  );
+};
 
 const About = () => {
   const ref = useRef(null);
@@ -67,8 +96,11 @@ const About = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <motion.div variants={itemVariants} className="md:col-span-2 space-y-6">
             {ABOUT_ME.paragraphs.map((paragraph, index) => (
-              <p
+              <motion.p
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
                 className="text-muted-foreground leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: highlightText(paragraph) }}
               />
@@ -78,38 +110,46 @@ const About = () => {
               variants={itemVariants}
               className="grid grid-cols-2 gap-4 pt-4"
             >
-              <div className="glass-card p-4 rounded-lg text-center hover-lift">
-                <p className="text-3xl font-bold text-gradient">
-                  {PERSONAL_INFO.experience}
-                </p>
-                <p className="text-muted-foreground text-sm mt-1">
+              <motion.div
+                whileHover={{ y: -4, boxShadow: "0 0 25px hsl(187 80% 48% / 0.12)" }}
+                className="glass-card p-4 rounded-lg text-center group hover:border-primary/30 transition-all duration-300"
+              >
+                <AnimatedCounter target={2} suffix="+" isInView={isInView} />
+                <p className="text-muted-foreground text-sm mt-1 group-hover:text-foreground transition-colors">
                   Years Experience
                 </p>
-              </div>
-              <div className="glass-card p-4 rounded-lg text-center hover-lift">
-                <p className="text-3xl font-bold text-gradient">4+</p>
-                <p className="text-muted-foreground text-sm mt-1">
+              </motion.div>
+              <motion.div
+                whileHover={{ y: -4, boxShadow: "0 0 25px hsl(187 80% 48% / 0.12)" }}
+                className="glass-card p-4 rounded-lg text-center group hover:border-primary/30 transition-all duration-300"
+              >
+                <AnimatedCounter target={4} suffix="+" isInView={isInView} />
+                <p className="text-muted-foreground text-sm mt-1 group-hover:text-foreground transition-colors">
                   Projects Completed
                 </p>
-              </div>
+              </motion.div>
             </motion.div>
           </motion.div>
 
+          {/* Profile Image with reveal animation */}
           <motion.div
-            variants={itemVariants}
-            className="relative group"
+            initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
+            animate={isInView ? { opacity: 1, scale: 1, rotateY: 0 } : { opacity: 0, scale: 0.8, rotateY: 15 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: easeOut }}
+            className="relative group flex items-center justify-center"
           >
             <div className="relative">
-              {/* Profile Image Placeholder */}
-              <div className="aspect-square rounded-lg overflow-hidden glass-card">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <div className="text-6xl font-bold text-primary/30">
-                    {PERSONAL_INFO.firstName[0]}
-                  </div>
-                </div>
-              </div>
-              {/* Border Effect */}
-              <div className="absolute inset-0 border-2 border-primary rounded-lg translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
+              <motion.div
+                className="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-primary/30 shadow-[0_0_30px_hsl(187_80%_48%/0.15)]"
+              >
+                <img
+                  src={PERSONAL_INFO.profileImage}
+                  alt={`${PERSONAL_INFO.name} - ${PERSONAL_INFO.role}`}
+                  className="w-full h-full object-cover object-top"
+                />
+              </motion.div>
+              {/* Decorative ring */}
+              <div className="absolute -inset-3 rounded-full border-2 border-dashed border-primary/20 animate-[spin_20s_linear_infinite]" />
             </div>
           </motion.div>
         </div>

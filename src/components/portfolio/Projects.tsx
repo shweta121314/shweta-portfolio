@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FiGithub, FiExternalLink, FiFolder } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { PROJECTS } from "@/config/constants";
 import type { Easing } from "framer-motion";
 
@@ -69,10 +69,20 @@ const Projects = () => {
                   whileHover={{ scale: 1.02 }}
                   className="relative group rounded-lg overflow-hidden"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 via-primary/10 to-transparent glass-card flex items-center justify-center">
-                    <FiFolder className="text-primary/40" size={64} />
+                  <div className={`aspect-video bg-gradient-to-br ${project.gradient} glass-card flex flex-col items-center justify-center gap-4 p-6`}>
+                    <span className="text-5xl md:text-6xl">{project.emoji}</span>
+                    <div className="flex flex-wrap justify-center gap-2 max-w-[280px]">
+                      {project.techStack.slice(0, 4).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 text-xs mono-text bg-background/40 backdrop-blur-sm rounded-md text-foreground/80 border border-border/50"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300" />
+                  <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-300" />
                 </motion.div>
               </div>
 
@@ -161,7 +171,7 @@ const Projects = () => {
                   className="glass-card p-6 rounded-xl hover-lift"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <FiFolder className="text-primary" size={40} />
+                    <span className="text-4xl">{project.emoji}</span>
                     <div className="flex gap-3">
                       <a
                         href={project.githubUrl}
